@@ -19,8 +19,6 @@ test_generator = test_datagen.flow_from_directory(
         batch_size=5,
         class_mode='binary')
 
-tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
-
 model = tf.keras.models.Sequential()
 
 model.add(tf.keras.layers.Input(shape=(256, 256, 3)))
@@ -54,4 +52,4 @@ history = model.fit_generator(
       validation_data=test_generator,
       validation_steps=50,
       verbose=1,
-      callbacks=[cp_callback, tensorboard])
+      callbacks=[cp_callback])
